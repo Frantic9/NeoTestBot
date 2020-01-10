@@ -53,7 +53,7 @@ public class Robot extends TimedRobot {
     m_frontLeftMotor.setInverted(true);
     m_rearLeftMotor.setInverted(true);
 
-    //sets each motro back to factory defaults
+    //sets each motor back to factory defaults
     m_frontLeftMotor.restoreFactoryDefaults();
     m_frontRightMotor.restoreFactoryDefaults();
     m_rearLeftMotor.restoreFactoryDefaults();
@@ -74,6 +74,7 @@ public class Robot extends TimedRobot {
     adjustedLeftJoystickY = m_LeftStick.getY() * (m_LeftStick.getZ()/2 + 0.5);
     adjustedRightJoystickX = -1 * m_RightStick.getX() * (m_LeftStick.getZ()/2 + 0.5);
 
+    //deadband control
     if(adjustedLeftJoystickX < deadbandLimits && adjustedLeftJoystickX > -(deadbandLimits)){
       adjustedLeftJoystickX = 0;
     }
@@ -86,7 +87,7 @@ public class Robot extends TimedRobot {
       adjustedRightJoystickX = 0;
     }
 
-    //Drives the robto
+    //Drives the robot
     m_robotDrive.driveCartesian(adjustedLeftJoystickX, adjustedLeftJoystickY, adjustedRightJoystickX, 0.0);
   }
 }
